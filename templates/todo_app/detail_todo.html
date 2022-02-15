@@ -4,24 +4,37 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-            <div class="row my-5 align-items-center justify-content-center">
-                <div class="col-9 col-lg-6">
-                    <div class="card border-primary border-2">
-                        <div class="card-header text-center text-primary bg-dark">
-                            <h3>{{ object.title|capfirst }} Detail <a href="{% url 'list_todos' %}">
-                                <i class="bi bi-house-heart" id="go_home"></i></a>
-                            </h3>
-                        </div>
-                        <div class="card-body text-left py-2">
+        <div class="row my-5 align-items-center justify-content-center">
+            <div class="col-9 col-lg-6">
+                <div class="card border-primary border-2">
+                    <div class="card-header text-center text-primary bg-dark">
+                        <h3>{{ object.title|capfirst }} Detail <a href="{% url 'list_todos' %}"
+                                                                  class="edit-btn text-success">
 
-                            <div class="card-title">
-                                {{ object.description|safe }}
-                                <small class="date-right">Created: {{ object.date_created }}</small>
-                            </div>
+                            <i class="bi bi-house-heart" id="go_home"></i></a>
+
+                        </h3>
+                    </div>
+                    <div class="card-body text-left py-2">
+
+                        <div class="card-title">
+                            {{ object.description|safe|linebreaks }}
+                            <small class="date-right" style="color: #002ba1">
+                                Created: {{ object.date_created }}
+                            </small>
+                            <form action="{% url 'like_todo' object.pk %}" method="post" class="like-post-form">
+                                {% csrf_token %}
+                                <button type="submit" name="todo_id" value="{{ object.id }}" class="btn btn-info btn-sm mx-3">
+                                    Like
+                                </button>
+                                <small >{{ object.total_likes }}</small>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     {% else %}
         <h2 class="text-center mt-5">You are not allowed to see any tasks!</h2>
     {% endif %}

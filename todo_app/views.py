@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView, DetailView
 from rest_framework import status
@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 
 from todo_app.forms import AddTodoForm
 from todo_app.models import TodoModel
-from django.http import HttpResponse, JsonResponse, Http404
+from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from .serializers import TodoSerializer
@@ -145,3 +145,9 @@ class DetailApi(APIView):
         todo = self.get_object(pk)
         todo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+def like_todo(request, pk):
+    todo = get_object_or_404(TodoModel, id=request.POST.get('todo_id'))
+    todo.likes.add(request.user)
+    return HttpResponseRedirect(reverse('detail_todo', args=[str(pk)]))

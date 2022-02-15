@@ -14,8 +14,7 @@ h1, h2, h3 {
     margin-left: 30px;
 }
 
-.heart-icon, .edit-btn {
-    color: #f30404;
+.heart-icon, .edit-btn, .like-post-form {
     float: right;
     margin-right: 10px;
 }

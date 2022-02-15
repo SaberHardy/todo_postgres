@@ -14,4 +14,7 @@ urlpatterns = [
     # Using class based views
     path('api_todo/', TodoListApi.as_view(), name='api_todo'),
     path('api_todo/<int:pk>/', DetailApi.as_view(), name='api_todo'),
+    path('likes/<int:pk>/', like_todo, name='like_todo'),
+
+    #Create like button
 ]
