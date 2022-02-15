@@ -16,11 +16,9 @@
                             <div class="card-body">
                                 <div class="form-check">
                                     {% if user.is_authenticated %}
-
-                                        author id: {{ todo.author.id }}<br>
-                                        todo author: {{ todo.author }}<br>
-                                        user id: {{ user.id }}<br>
-
+{#                                        author id: {{ todos.author.id }}<br>#}
+{#                                        todos author: {{ todos.author }}<br>#}
+{#                                        user id: {{ user.id }}<br>#}
                                         <label>
                                             {% if todo.author.id == user.id %}
                                                 <input type="checkbox" name="packersOff"
