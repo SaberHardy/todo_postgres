@@ -4,25 +4,25 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    <div class="row my-5 align-items-center justify-content-center">
-        <div class="col-9 col-lg-6">
-            <div class="card border-primary border-2">
-                <div class="card-header text-center text-primary bg-dark">
-                    <h3>{{ object.title|capfirst }} Detail <a href="{% url 'list_todos' %}">
-                        <i class="bi bi-house-heart" id="go_home"></i></a>
-                    </h3>
-                </div>
-                <div class="card-body text-left py-2">
+            <div class="row my-5 align-items-center justify-content-center">
+                <div class="col-9 col-lg-6">
+                    <div class="card border-primary border-2">
+                        <div class="card-header text-center text-primary bg-dark">
+                            <h3>{{ object.title|capfirst }} Detail <a href="{% url 'list_todos' %}">
+                                <i class="bi bi-house-heart" id="go_home"></i></a>
+                            </h3>
+                        </div>
+                        <div class="card-body text-left py-2">
 
-                    <div class="card-title">
-                        {{ object.description|safe }}
-                        <small class="date-right">Created: {{ object.date_created }}</small>
+                            <div class="card-title">
+                                {{ object.description|safe }}
+                                <small class="date-right">Created: {{ object.date_created }}</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-        {% else %}
+    {% else %}
         <h2 class="text-center mt-5">You are not allowed to see any tasks!</h2>
     {% endif %}
 {% endblock %}

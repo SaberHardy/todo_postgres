@@ -17,10 +17,16 @@
                                 <div class="form-check">
                                     {% if user.is_authenticated %}
 
+                                        author id: {{ todo.author.id }}<br>
+                                        todo author: {{ todo.author }}<br>
+                                        user id: {{ user.id }}<br>
+
                                         <label>
-                                            <input type="checkbox" name="packersOff"
-                                                   class=" form-check-input strikethrough" value="1">
-                                            <span>
+                                            {% if todo.author.id == user.id %}
+                                                <input type="checkbox" name="packersOff"
+                                                       class=" form-check-input strikethrough" value="1">
+                                                <span>
+                                            {% endif %}
                                             <a class="link-to-detail" href="{% url 'detail_todo' todo.id %}">
                                             {{ todo.title|capfirst }}</a>
                                             </span>
@@ -32,17 +38,19 @@
                                              </a>
                                         </span>
 
-                                        <span>
+                                        {% if todo.author.id == user.id %}
+                                            <span>
                                              <a href="{% url 'delete_todo' todo.id %}">
                                                  <i class="bi bi-trash3-fill trash-icon"></i>
                                              </a>
                                         </span>
 
-                                        <span>
+                                            <span>
                                             <a href="{% url 'update_todo' todo.id %}">
                                                 <i class="bi bi-pencil-square text-success edit-btn"></i>
                                             </a>
                                         </span>
+                                        {% endif %}
                                     {% else %}
                                         <span>
                                             <p>{{ todo.title|capfirst }}</p>

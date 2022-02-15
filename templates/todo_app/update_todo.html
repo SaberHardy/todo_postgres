@@ -4,26 +4,30 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <div class="row my-5 align-items-center justify-content-center">
-            <div class="col-9 col-lg-6">
-                <div class="card border-primary border-2">
-                    <div class="card-header text-center text-primary bg-dark">
-                        <h3>Update your todo</h3>
-                    </div>
-                    <div class="card-body text-left py-2">
+        {% if user.id == todo.author.id %}
+            <div class="row my-5 align-items-center justify-content-center">
+                <div class="col-9 col-lg-6">
+                    <div class="card border-primary border-2">
+                        <div class="card-header text-center text-primary bg-dark">
+                            <h3>Update your todo</h3>
+                        </div>
+                        <div class="card-body text-left py-2">
 
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success button-confirmation">Save</button>
-                            </div>
-                        </form>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success button-confirmation">Save</button>
+                                </div>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            {% else %}
+            <h2 class="text-center mt-5">You are not the correct user to edit this!</h2>
+        {% endif %}
     {% else %}
         <h2 class="text-center mt-5">You are not allowed to update any tasks!</h2>
     {% endif %}
