@@ -48,7 +48,17 @@ class DetailTodoView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(DetailTodoView, self).get_context_data(*args, **kwargs)
-        context['now'] = timezone.now()
+
+        stuff = get_object_or_404(TodoModel, id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+
+        liked = False
+        if stuff.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        # context['now'] = timezone.now()
+        # context['total_likes'] = total_likes
+        context['liked'] = liked
         return context
 
 
@@ -149,5 +159,12 @@ class DetailApi(APIView):
 
 def like_todo(request, pk):
     todo = get_object_or_404(TodoModel, id=request.POST.get('todo_id'))
-    todo.likes.add(request.user)
+    liked = False
+    if todo.likes.filter(id=request.user.id).exists():
+        todo.likes.remove(request.user)
+        liked = False
+    else:
+        todo.likes.add(request.user)
+        liked = True
+
     return HttpResponseRedirect(reverse('detail_todo', args=[str(pk)]))

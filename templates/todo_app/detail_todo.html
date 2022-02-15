@@ -24,10 +24,14 @@
                             </small>
                             <form action="{% url 'like_todo' object.pk %}" method="post" class="like-post-form">
                                 {% csrf_token %}
-                                <button type="submit" name="todo_id" value="{{ object.id }}" class="btn btn-info btn-sm mx-3">
-                                    Like
+                                <button type="submit" name="todo_id" value="{{ object.id }}"
+                                        class="{% if liked %}btn btn-info
+                                        {% else %}btn btn-secondary {% endif %} btn-sm mx-3">
+
+                                    {% if liked %}Unlike{% else %} Like {% endif %}
                                 </button>
-                                <small >{{ object.total_likes }}</small>
+
+                                <small>{{ object.total_likes }}</small>
                             </form>
 
                         </div>
