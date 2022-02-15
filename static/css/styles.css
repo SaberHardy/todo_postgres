@@ -35,8 +35,8 @@ h1, h2, h3 {
     right: 30px;
 }
 
-.date-right, #go_home {
-    float: right;
+.register-btn {
+    margin-left: 40%;
 }
 
 .strikethrough:checked + span {
