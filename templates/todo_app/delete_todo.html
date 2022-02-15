@@ -4,7 +4,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        {% if user.id == todo.author.id %}
+        {% if object.author.id == user.id %}
             <div class="row my-5 align-items-center justify-content-center">
                 <div class="col-9 col-lg-6">
                     <div class="card border-primary border-2">
