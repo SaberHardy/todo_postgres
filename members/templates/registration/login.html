@@ -1,0 +1,24 @@
+{% extends 'todo_app/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="row my-5 align-items-center justify-content-center">
+        <div class="col-9 col-lg-6">
+            <div class="card border-primary border-2">
+                <div class="card-header text-center text-primary bg-dark">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body text-left py-2">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Login" class="btn btn-success date-right">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

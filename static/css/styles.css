@@ -1,0 +1,49 @@
+body {
+    background-color: #2F4EA7;
+}
+
+.link-to-detail {
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    color: white;
+}
+
+.align-top-right {
+    margin-left: 30px;
+}
+
+.heart-icon, .edit-btn {
+    color: #f30404;
+    float: right;
+    margin-right: 10px;
+}
+
+.trash-icon {
+    color: red;
+    float: right;
+}
+
+.delete-text {
+    alignment: center;
+    color: #ff0015;
+}
+
+.button-confirmation {
+    width: 25%;
+    right: 30px;
+}
+
+.date-right, #go_home {
+    float: right;
+}
+
+.strikethrough:checked + span {
+    text-decoration: line-through;
+    color: #f30404;
+}
+
+.strikethrough {
+    margin-right: 10px;
+}
