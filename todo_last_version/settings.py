@@ -28,7 +28,28 @@ INSTALLED_APPS = [
     'todo_app.apps.TodoAppConfig',
     'members',
     'rest_framework',
+    'ckeditor',
 ]
+
+CKEDITOR_CONFIGS = {
+    'default': {
+
+        # This part is for defining what you need to display on th ckeditor
+
+        # 'toolbar': [
+        #     ['Undo', 'Redo',
+        #      '-', 'Bold', 'Italic', 'Underline',
+        #      '-', 'Link', 'Unlink', 'Anchor',
+        #      '-', 'Format',
+        #
+        #      '-', 'Maximize',
+        #
+        #      ],
+        # ],
+        'width': '590',
+        'toolbarCanCollapse': True,
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
