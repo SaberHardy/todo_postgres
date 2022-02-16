@@ -6,8 +6,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from todo_app.forms import AddTodoForm
-from todo_app.models import TodoModel
+from todo_app.forms import AddTodoForm, UpdatePictureProfile  # ,UpdatePictureProfile
+from todo_app.models import TodoModel, Profile
 from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -168,3 +168,9 @@ def like_todo(request, pk):
         liked = True
 
     return HttpResponseRedirect(reverse('detail_todo', args=[str(pk)]))
+
+
+class EditProfilePictureView(UpdateView):
+    model = Profile
+    form_class = UpdatePictureProfile
+    template_name = 'todo_app/profile_pic.html'

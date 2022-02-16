@@ -17,4 +17,6 @@ urlpatterns = [
     path('likes/<int:pk>/', like_todo, name='like_todo'),
 
     #Create like button
+    path('<int:pk>/update_profile_picture/', EditProfilePictureView.as_view(), name='update_profile_picture'),
+
 ]

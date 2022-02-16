@@ -46,3 +46,22 @@ h1, h2, h3 {
 .strikethrough {
     margin-right: 10px;
 }
+
+#containerIntro h3,
+#containerIntro p {
+    display: inline;
+    vertical-align: top;
+    /*font-family: 'Open Sans', sans-serif;*/
+    line-height: 28px;
+}
+
+.update-pic {
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+}
+
+.rounded-circle {
+    margin-right: 25px;
+    margin-top: 10px;
+}
