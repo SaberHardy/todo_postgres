@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.urls import reverse_lazy
 
-from members.forms import RegisterForm, UpdateProfileForm
+from members.forms import RegisterForm, UpdateProfileForm, PasswordChangingForm
 
 
 class UserRegisterView(generic.CreateView):
@@ -22,6 +22,6 @@ class EditUserForm(generic.UpdateView):
 
 
 class PasswordsChangeView(PasswordChangeView):
-    form_class = PasswordChangeForm
+    form_class = PasswordChangingForm
     template_name = 'registration/change-password.html'
     success_url = reverse_lazy('list_todos')

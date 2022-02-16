@@ -72,3 +72,21 @@ class UpdateProfileForm(UserChangeForm):
 
         for field_name in self.fields:
             self.fields[field_name].help_text = None
+
+
+class PasswordChangingForm(PasswordChangeForm):
+    old_password = forms.CharField(max_length=100, widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password',
+               'placeholder': 'Type your old password'}))
+
+    new_password1 = forms.CharField(max_length=100, widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password',
+               'placeholder': 'Type your new password'}))
+
+    new_password2 = forms.CharField(max_length=100, widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password',
+               'placeholder': 'Type your confirmation password'}))
+
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')
