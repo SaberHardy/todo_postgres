@@ -46,9 +46,9 @@ class UpdateProfileForm(UserChangeForm):
         attrs={'class': 'form-control',
                'placeholder': 'Type your last name here'}))
 
-    is_superuser = forms.CharField(widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
-    is_staff = forms.CharField(widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
-    is_active = forms.CharField(widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
+    # is_superuser = forms.CharField(widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
+    # is_staff = forms.CharField(widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
+    # is_active = forms.CharField(widget=forms.CheckboxInput(attrs={'class': 'form-check'}))
     # date_joined = forms.CharField(widget=forms.TextInput(attrs=
     #                                                      {'class': 'form-control',
     #                                                       'placeholder': 'Date joined'}))
@@ -56,7 +56,7 @@ class UpdateProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username',
-                  'email', 'is_superuser', 'is_active', 'is_staff')
+                  'email',)  # 'is_superuser', 'is_active', 'is_staff')
 
     def __init__(self, *args, **kwargs):
         super(UpdateProfileForm, self).__init__(*args, **kwargs)

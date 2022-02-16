@@ -1,5 +1,5 @@
 {% extends 'todo_app/base.html' %}
-
+{% load static %}
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -7,7 +7,17 @@
         <div class="col-9 col-lg-6">
             <div class="card border-primary border-2">
                 <div class="card-header text-center text-primary bg-dark">
-                    <h3>Your tasks</h3>
+                    <h3>Your tasks
+                        {% if user.is_authenticated %}<a href="{% url 'edit_profile' %}">{% endif %}
+                        <img src="{% if user.profile.profile_pic %}
+                            {{ user.profile.profile_pic.url }}
+                            {% else %}
+                            {% static 'images/default.png' %}
+                            {% endif %}"
+                             align="right"
+                             height="50" width="49" class="rounded-circle"></a>
+                    </h3>
+
                 </div>
                 <div class="card-body text-left py-2">
 
@@ -16,9 +26,9 @@
                             <div class="card-body">
                                 <div class="form-check">
                                     {% if user.is_authenticated %}
-{#                                        author id: {{ todos.author.id }}<br>#}
-{#                                        todos author: {{ todos.author }}<br>#}
-{#                                        user id: {{ user.id }}<br>#}
+                                        {#                                        author id: {{ todos.author.id }}<br>#}
+                                        {#                                        todos author: {{ todos.author }}<br>#}
+                                        {#                                        user id: {{ user.id }}<br>#}
                                         <label>
                                             {% if todo.author.id == user.id %}
                                                 <input type="checkbox" name="packersOff"
