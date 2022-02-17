@@ -6,8 +6,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from todo_app.forms import AddTodoForm, UpdatePictureProfile  # ,UpdatePictureProfile
-from todo_app.models import TodoModel, Profile
+from todo_app.forms import AddTodoForm, UpdatePictureProfile, CommentForm  # ,UpdatePictureProfile
+from todo_app.models import TodoModel, Profile, Comment
 from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -174,3 +174,19 @@ class EditProfilePictureView(UpdateView):
     model = Profile
     form_class = UpdatePictureProfile
     template_name = 'todo_app/profile_pic.html'
+
+
+class CreateComment(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'todo_app/add_comment.html'
+
+    def form_valid(self, form, *args, **kwargs):
+        form.instance.todo_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    success_url = reverse_lazy('list_todos')
+
+
+
+

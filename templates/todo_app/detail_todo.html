@@ -36,17 +36,19 @@
                             <hr>
 
                             <h2 class="comments">Comments</h2>
-
-                            {% if not todomodel.comments %}
-                                No comments yet . . . <a href="#">Add comment</a>
-                            {% else %}
+                            {% if todomodel.comments %}
                                 {#Loop throw all comments#}
                                 {% for comment in todomodel.comments.all %}
                                     <strong>
-                                        {{ comment.name|capfirst }} - <small>{{ comment.date_added }}</small>
-                                    </strong>
-                                    <br>
+                                        {{ user.username|capfirst }}</strong><br>
+                                    {{ comment.body }} <p class="text-end comment-date" > {{ comment.date_added }}</p>
+
                                 {% endfor %}
+                                <a href="{% url 'add_comment' todomodel.pk %}" class="text-decoration-none">Add
+                                comment...</a>
+
+                            {% else %}
+                                No comments yet . . . <a href="{% url 'add_comment' todomodel.pk %}">Add comment</a>
                             {% endif %}
 
                         </div>

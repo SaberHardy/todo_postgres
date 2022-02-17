@@ -69,3 +69,7 @@ h1, h2, h3 {
 .comments {
     color: black;
 }
+
+.comment-date {
+    font-size: 12px;
+}

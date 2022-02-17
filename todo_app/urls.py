@@ -18,5 +18,6 @@ urlpatterns = [
 
     #Create like button
     path('<int:pk>/update_profile_picture/', EditProfilePictureView.as_view(), name='update_profile_picture'),
+    path('<int:pk>/add_comment/', CreateComment.as_view(), name='add_comment'),
 
 ]

@@ -1,5 +1,5 @@
 from django import forms
-from todo_app.models import TodoModel, Profile
+from todo_app.models import TodoModel, Profile, Comment
 
 
 class AddTodoForm(forms.ModelForm):
@@ -27,3 +27,14 @@ class UpdatePictureProfile(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UpdatePictureProfile, self).__init__(*args, **kwargs)
         self.fields['website_url'].required = False
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('body',)
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+        }
