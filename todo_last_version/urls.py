@@ -10,5 +10,7 @@ urlpatterns = [
     path('members/', include('django.contrib.auth.urls')),
     path('members/', include('members.urls')),
 
+    path('social-auth/', include('social_django.urls', namespace='social')),
+
     # path('members/', RedirectView.as_view(url='')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

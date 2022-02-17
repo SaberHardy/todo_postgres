@@ -7,8 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c%ijv4kq7y75)9e$(4)2(60829lybr3e9jb%k!t)@b5orat6k)'
+from todo_last_version.secret_settings import *
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -24,11 +24,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django.contrib.sites',
     'todo_app.apps.TodoAppConfig',
     'members',
     'rest_framework',
     'ckeditor',
+    # 'social_django',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',  # for Google OAuth 2.0
 ]
 
 CKEDITOR_CONFIGS = {
@@ -146,3 +151,11 @@ LOGIN_REDIRECT_URL = 'list_todos'
 LOGIN_URL = 'list_todos'
 
 LOGOUT_REDIRECT_URL = 'list_todos'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
