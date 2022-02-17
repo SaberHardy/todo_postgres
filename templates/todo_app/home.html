@@ -7,14 +7,15 @@
         <div class="col-9 col-lg-6">
             <div class="card border-primary border-2">
                 <div class="card-header text-center text-primary bg-dark">
-
-                    <div id="containerIntro">
-                        <h3>Your tasks</h3>
-
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'update_profile_picture' user.pk %}" class="update-pic">Update picture</a>
-                        {% endif %}
-                    </div>
+                    {% if user.is_authenticated %}
+                        <div id="containerIntro">
+                            <h3>Your tasks</h3>
+                            <a href="{% url 'update_profile_picture' user.pk %}"
+                               class="update-pic">Update picture</a>
+                        </div>
+                    {% else %}
+                        <h3>All tasks created</h3>
+                    {% endif %}
                     {% if user.is_authenticated %} <a href="{% url 'edit_profile' %}"> {% endif %}
                     <img src="{% if user.profile.profile_pic %}
                                     {{ user.profile.profile_pic.url }}

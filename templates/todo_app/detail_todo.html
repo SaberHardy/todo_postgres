@@ -33,6 +33,21 @@
 
                                 <small>{{ object.total_likes }}</small>
                             </form>
+                            <hr>
+
+                            <h2 class="comments">Comments</h2>
+
+                            {% if not todomodel.comments %}
+                                No comments yet . . . <a href="#">Add comment</a>
+                            {% else %}
+                                {#Loop throw all comments#}
+                                {% for comment in todomodel.comments.all %}
+                                    <strong>
+                                        {{ comment.name|capfirst }} - <small>{{ comment.date_added }}</small>
+                                    </strong>
+                                    <br>
+                                {% endfor %}
+                            {% endif %}
 
                         </div>
                     </div>
